@@ -9,40 +9,38 @@ namespace Palmer
     {
         public Retry Retry { get; set; }
 
-        public RetryCondition(Retry retry, Func<RetryContext, bool> predicate)
+        public RetryCondition(Retry retry, Func<RetryConditionHandle, bool> predicate)
         {
             Retry = retry;
+            Retry.Conditions.Add(this);
             FilterCondition = predicate;
         }
 
         public Retry For(uint times)
         {
-            return null;
+            TerminationCondition = (handle) => handle.Occurences < times;
+            return Retry;
         }
 
         public Retry For(TimeSpan duration)
         {
-            return null;
+            TerminationCondition = (handle) => DateTimeOffset.Now - handle.FirstOccured < duration;
+            return Retry;
         }
 
-        public Retry Until(Func<RetryContext, bool> predicate)
+        public Retry Until(Func<RetryConditionHandle, bool> predicate)
         {
             TerminationCondition = predicate;
             return Retry;
         }
 
-        public Retry Until<TException>(Func<RetryContext, bool> predicate)
-        {
-            return null;
-        }
-
         public Retry Indefinately()
         {
-            TerminationCondition = (context) => false;
+            TerminationCondition = (handle) => false;
             return Retry;
         }
 
-        public Func<RetryContext, bool> FilterCondition { get; private set; }
-        public Func<RetryContext, bool> TerminationCondition { get; private set; }
+        public Func<RetryConditionHandle, bool> FilterCondition { get; private set; }
+        public Func<RetryConditionHandle, bool> TerminationCondition { get; private set; }
     }
 }

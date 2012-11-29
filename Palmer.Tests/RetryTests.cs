@@ -7,24 +7,30 @@ namespace Palmer.Tests
     [TestClass]
     public class RetryTests
     {
+        private static Random m_Generator = new Random();
+
         [TestMethod]
-        public void Test1()
+        [ExpectedException(typeof(RetryException))]
+        public void GivenInvalidUrlWebExceptionRaisedThreeTimesThenRetryExceptionThrown()
         {
-            Retry.On<WebException>().For(5).With<int>(
-                context => 1
-                );
+            var invalidUrl = "http://invalid";
+            var policy = Retry.On<WebException>().For(3).With((context) =>
+            {
+                var client = new WebClient();
+                client.DownloadData(invalidUrl);
+            });
+        }
 
-            Retry.On<WebException>().For(TimeSpan.FromSeconds(15)).With<int>(
-                context => 1
-                );
-
-            Retry.On<WebException>().Until(x => 1 == 1).With(
-                delegate(RetryContext context)
-                {
-                    Console.WriteLine("Hello World!");
-                    Console.WriteLine("Good-bye World!");
-                }
-                );
+        [TestMethod]
+        [ExpectedException(typeof(RetryException))]
+        public void GivenInvalidUrlWebExceptionRaisedUntilRandomConditionMet()
+        {
+            var invalidUrl = "http://invalid";
+            var policy = Retry.On<WebException>().Until(handle => m_Generator.Next(5) == 3).With((context) =>
+            {
+                var client = new WebClient();
+                client.DownloadData(invalidUrl);
+            });
         }
     }
 }
