@@ -24,7 +24,13 @@ namespace Palmer
 
         public Retry For(TimeSpan duration)
         {
-            TerminationCondition = (handle) => DateTimeOffset.Now - handle.FirstOccured < duration;
+            TerminationCondition = (handle) =>
+            {
+                var durationSinceFirstOccured = DateTimeOffset.Now - handle.FirstOccured;
+                var result = durationSinceFirstOccured > duration;
+                return result;
+            };
+
             return Retry;
         }
 

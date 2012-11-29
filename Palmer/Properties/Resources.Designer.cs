@@ -61,7 +61,7 @@ namespace Palmer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to execute function multiple times..
+        ///   Looks up a localized string similar to An error occured performing an operation. The operation we retried &apos;{0}&apos; times and failed, the last exception message was &apos;{1}&apos;. Check the inner exception for details..
         /// </summary>
         internal static string ExceptionMessage {
             get {

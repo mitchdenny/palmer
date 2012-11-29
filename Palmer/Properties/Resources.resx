@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExceptionMessage" xml:space="preserve">
-    <value>Failed to execute function multiple times.</value>
+    <value>An error occured performing an operation. The operation we retried '{0}' times and failed, the last exception message was '{1}'. Check the inner exception for details.</value>
   </data>
 </root>

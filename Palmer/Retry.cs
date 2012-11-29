@@ -33,7 +33,7 @@ namespace Palmer
         public static RetryCondition On<TException>() where TException : Exception
         {
             var retry = new Retry();
-            return OnInternal<TException>(retry, (handle) => true);
+            return OnInternal<TException>(retry);
         }
 
         public static RetryCondition On<TException>(Func<RetryConditionHandle, bool> predicate) where TException: Exception
@@ -55,7 +55,8 @@ namespace Palmer
         public RetryResult<TOutput> With<TOutput>(Func<RetryContext, TOutput> target)
         {
             TOutput output = default(TOutput);
-            var result = With((context) => output = target(context));
+            Action<RetryContext> capturedTarget = (context) => output = target(context);
+            var result = With(capturedTarget);
             var resultWithValue = result.WithValue(output);
             return resultWithValue;
         }
