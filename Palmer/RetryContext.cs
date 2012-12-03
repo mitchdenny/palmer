@@ -11,8 +11,7 @@ namespace Palmer
         public RetryContext(Retry retry)
         {
             Retry = retry;
-            ConditionHandles = retry.Conditions.Select(condition => new RetryConditionHandle(this, condition));
-            Started = DateTimeOffset.Now;
+            ConditionHandles = retry.Conditions.Select(condition => new RetryConditionHandle(this, condition)).ToList();
         }
 
         public IEnumerable<RetryConditionHandle> ConditionHandles { get; private set; }

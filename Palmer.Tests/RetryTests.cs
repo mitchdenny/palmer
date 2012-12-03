@@ -58,7 +58,6 @@ namespace Palmer.Tests
         }
 
         [TestMethod]
-        [Ignore]
         public void GivenInvalidUrlWebExceptionGivesUpAfter15Seconds()
         {
             var stopwatch = new Stopwatch();
@@ -72,16 +71,14 @@ namespace Palmer.Tests
                     client.DownloadData(invalidUrl);
                 });
             }
-            catch
+            catch(RetryException ex)
             {
+                stopwatch.Stop();
+                // Hard to truly test this, but you would think with execution overheads
+                // that if you tell it to wait for ten seconds before giving up that
+                // the total execution time would be slightly more than ten seconds.
+                Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(15), "Stop watch elapsed time exceeded allotted time.", stopwatch.Elapsed);
             }
-
-            stopwatch.Stop();
-
-            // Hard to truly test this, but you would think with execution overheads
-            // that if you tell it to wait for ten seconds before giving up that
-            // the total execution time would be slightly more than ten seconds.
-            Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(15), "Stop watch elapsed time exceeded allotted time.", stopwatch.Elapsed);
         }
     }
 }
