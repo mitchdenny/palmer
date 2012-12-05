@@ -9,7 +9,7 @@
     <projectUrl>http://mitchdenny.github.com/Palmer</projectUrl>
     <iconUrl>https://github.com/MitchDenny/Palmer/tree/master/Palmer/Palmer.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>A small .net library.</description>
     <releaseNotes>This is the initial release of the Palmer library.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>.net c# csharp deadlock retry fluent</tags>
