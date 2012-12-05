@@ -18,7 +18,7 @@ namespace Palmer
 
         public Retry For(uint times)
         {
-            TerminationCondition = (handle) => handle.Occurences < times;
+            TerminationCondition = (handle) => handle.Occurences > times;
             return Retry;
         }
 

@@ -63,7 +63,9 @@ namespace Palmer
         {
             get
             {
-                return TerminatingConditionHandles.Any() != true;
+                var handles = TerminatingConditionHandles.ToList();
+                var any = handles.Any(handle => handle.Condition.TerminationCondition(handle));
+                return any != true;
             }
         }
 

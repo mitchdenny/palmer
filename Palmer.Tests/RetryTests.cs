@@ -14,11 +14,9 @@ namespace Palmer.Tests
         [ExpectedException(typeof(RetryException))]
         public void GivenInvalidUrlWebExceptionRaisedThreeTimesThenRetryExceptionThrown()
         {
-            var invalidUrl = "http://invalid";
             Retry.On<WebException>().For(3).With((context) =>
             {
-                var client = new WebClient();
-                client.DownloadData(invalidUrl);
+                throw new WebException();
             });
         }
 
@@ -26,11 +24,12 @@ namespace Palmer.Tests
         [ExpectedException(typeof(RetryException))]
         public void GivenInvalidUrlWebExceptionRaisedUntilRandomConditionMet()
         {
-            var invalidUrl = "http://invalid";
-            Retry.On<WebException>().Until(handle => m_Generator.Next(5) == 3).With((context) =>
+            var counter = 0;
+
+            Retry.On<WebException>().Until(handle => counter == 3).With((context) =>
             {
-                var client = new WebClient();
-                client.DownloadData(invalidUrl);
+                counter++;
+                throw new WebException();
             });
         }
 
@@ -49,11 +48,9 @@ namespace Palmer.Tests
         [ExpectedException(typeof(RetryException))]
         public void GivenInvalidUrlWebExceptionRaisedAndSelectedByPredicate()
         {
-            var invalidUrl = "http://invalid";
             Retry.On<WebException>(handle => handle.Context.LastException.Message == "The remote name could not be resolved: 'invalid'").For(2).With((context) =>
                 {
-                    var client = new WebClient();
-                    client.DownloadData(invalidUrl);
+                    throw new WebException("The remote name could not be resolved: 'invalid'");
                 });
         }
 
@@ -62,13 +59,11 @@ namespace Palmer.Tests
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var invalidUrl = "http://invalid";
             try
             {
-                Retry.On<WebException>().For(TimeSpan.FromSeconds(15)).With((context) =>
+                Retry.On<WebException>().For(TimeSpan.FromSeconds(2)).With((context) =>
                 {
-                    var client = new WebClient();
-                    client.DownloadData(invalidUrl);
+                    throw new WebException();
                 });
             }
             catch(RetryException ex)
@@ -77,7 +72,7 @@ namespace Palmer.Tests
                 // Hard to truly test this, but you would think with execution overheads
                 // that if you tell it to wait for ten seconds before giving up that
                 // the total execution time would be slightly more than ten seconds.
-                Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(15), "Stop watch elapsed time was below minimum time.", stopwatch.Elapsed);
+                Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(2), "Stop watch elapsed time was below minimum time.", stopwatch.Elapsed);
             }
         }
 
@@ -103,11 +98,15 @@ namespace Palmer.Tests
         [TestMethod]
         public void GivenPredicateFailureWillExecuteUntilSuccessful()
         {
+            var counter = 0;
+
             Retry.On(handle => handle.Occurences < 100).Indefinately().With(context =>
                 {
-                    Console.WriteLine();
+                    counter++;
                 }
                 );
+
+            Assert.AreEqual(101, counter);
         }
 
         [TestMethod]
