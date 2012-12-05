@@ -8,8 +8,6 @@ namespace Palmer
 {
     public class RetryConditionHandle
     {
-        private static Random m_Generator = new Random();
-
         public RetryConditionHandle(RetryContext context, RetryCondition condition)
         {
             Context = context;

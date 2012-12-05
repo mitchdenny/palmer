@@ -26,7 +26,7 @@ namespace Palmer
 
         private static RetryCondition OnInternal<TException>(Retry retry, Func<RetryConditionHandle, bool> predicate) where TException : Exception
         {
-            Func<RetryConditionHandle, bool> typeCheckingPredicate = (handle) => handle.Context.LastException is TException && predicate(handle);
+            Func<RetryConditionHandle, bool> typeCheckingPredicate = (handle) => handle.Context.DidExceptionOnLastRun && handle.Context.LastException is TException && predicate(handle);
             return new RetryCondition(retry, typeCheckingPredicate);
         }
 
@@ -67,31 +67,55 @@ namespace Palmer
 
             do
             {
+                context.DidExceptionOnLastRun = false;
+
                 try
                 {
                     target(context);
-                    return new RetryResult(context);
+                    var anyConditionsMet = CheckAndUpdateFilterConditions(context);
+
+                    if (!anyConditionsMet)
+                    {
+                        return new RetryResult(context);
+                    }
                 }
                 catch (Exception ex)
                 {
+                    context.DidExceptionOnLastRun = true;
                     context.Exceptions.Push(ex);
-                    UpdateOccurences(context.FilteredConditionHandles);
+
+                    var anyConditionsMet = CheckAndUpdateFilterConditions(context);
+                    if (!anyConditionsMet)
+                    {
+                        throw ex;
+                    }
                 }
             } while (context.KeepRetrying);
 
             throw new RetryException(context);
         }
 
-        private void UpdateOccurences(IEnumerable<RetryConditionHandle> handles)
+        private bool CheckAndUpdateFilterConditions(RetryContext context)
         {
-            foreach (var handle in handles)
-            {
-                handle.Occurences = handle.Occurences + 1;
+            var handlesForFilterConditionsMet = context.FilteredConditionHandles.Where(handle => handle.Condition.FilterCondition(handle));
 
-                if (handle.Occurences == 1)
+            if (handlesForFilterConditionsMet.Count() > 0)
+            {
+                foreach (var handle in handlesForFilterConditionsMet)
                 {
-                    handle.FirstOccured = DateTimeOffset.Now;
+                    handle.Occurences = handle.Occurences + 1;
+
+                    if (handle.Occurences == 1)
+                    {
+                        handle.FirstOccured = DateTimeOffset.Now;
+                    }
                 }
+
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

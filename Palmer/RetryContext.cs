@@ -49,6 +49,8 @@ namespace Palmer
             }
         }
 
+        public bool DidExceptionOnLastRun { get; set; }
+
         public Exception LastException
         {
             get

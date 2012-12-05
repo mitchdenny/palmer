@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer.Tests", "Palmer.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D381C1F1-3CEB-4198-BE12-6A8554E2B106}"
 	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
 		README.md = README.md
 	EndProjectSection
 EndProject

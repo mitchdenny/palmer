@@ -77,8 +77,73 @@ namespace Palmer.Tests
                 // Hard to truly test this, but you would think with execution overheads
                 // that if you tell it to wait for ten seconds before giving up that
                 // the total execution time would be slightly more than ten seconds.
-                Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(15), "Stop watch elapsed time exceeded allotted time.", stopwatch.Elapsed);
+                Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(15), "Stop watch elapsed time was below minimum time.", stopwatch.Elapsed);
             }
+        }
+
+        [TestMethod]
+        public void GivenInitiallyFailingCodeWillExecuteUntilSuccessful()
+        {
+            var timesToFail = 100;
+
+            Retry.On<Exception>().Indefinately().With((context) =>
+                {
+                    if (timesToFail == 0)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        timesToFail--;
+                        throw new Exception();
+                    }
+                });
+        }
+
+        [TestMethod]
+        public void GivenPredicateFailureWillExecuteUntilSuccessful()
+        {
+            Retry.On(handle => handle.Occurences < 100).Indefinately().With(context =>
+                {
+                    Console.WriteLine();
+                }
+                );
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void GivenCodeThatThrowsUnexpectedExceptionNoRetryExceptionIsThrown()
+        {
+            Retry.On<WebException>().Indefinately().With(context =>
+                {
+                    throw new InvalidOperationException();
+                });
+        }
+
+        [TestMethod]
+        public void GivenRetryPolicyWithMultipleExceptionsSuccessfullyRetriesMultipleTimes()
+        {
+            var retryCount = 0;
+
+            var result = Retry
+                .On<InvalidOperationException>().For(5)
+                .AndOn<ArgumentOutOfRangeException>().For(5)
+                .With(context =>
+                    {
+                        retryCount++;
+                        
+                        if (retryCount < 10)
+                        {
+                            if (retryCount % 2 == 0)
+                            {
+                                throw new InvalidOperationException();
+                            }
+                            else
+                            {
+                                throw new ArgumentOutOfRangeException();
+                            }
+                        }
+                    });
         }
     }
 }
