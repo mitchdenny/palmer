@@ -3,8 +3,8 @@
   <metadata>
     <id>Palmer</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>Mitch Denny</authors>
+    <owners>Mitch Denny</owners>
     <licenseUrl>http://mitchdenny.github.com/Palmer/License</licenseUrl>
     <projectUrl>http://mitchdenny.github.com/Palmer</projectUrl>
     <iconUrl>https://github.com/MitchDenny/Palmer/tree/master/Palmer/Palmer.png</iconUrl>
