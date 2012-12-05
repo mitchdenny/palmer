@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Palmer.Tests
 {
@@ -55,25 +56,35 @@ namespace Palmer.Tests
         }
 
         [TestMethod]
-        public void GivenInvalidUrlWebExceptionGivesUpAfter15Seconds()
+        public void GivenInvalidUrlWebExceptionGivesUpAfter1Seconds()
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             try
             {
-                Retry.On<WebException>().For(TimeSpan.FromSeconds(2)).With((context) =>
+                Retry.On<WebException>().For(TimeSpan.FromSeconds(1)).With((context) =>
                 {
                     throw new WebException();
                 });
             }
-            catch(RetryException ex)
+            catch(RetryException)
             {
                 stopwatch.Stop();
+
                 // Hard to truly test this, but you would think with execution overheads
                 // that if you tell it to wait for ten seconds before giving up that
                 // the total execution time would be slightly more than ten seconds.
-                Assert.IsTrue(stopwatch.Elapsed > TimeSpan.FromSeconds(2), "Stop watch elapsed time was below minimum time.", stopwatch.Elapsed);
+                Assert.IsTrue(
+                    IsWithinAcceptableTolerances(stopwatch, 1000, 10),
+                    "Stop watch elapsed time was below minimum time, the time was '{0}'.",
+                    stopwatch.Elapsed
+                    );
             }
+        }
+
+        private bool IsWithinAcceptableTolerances(Stopwatch stopwatch, int duration, int tolerance)
+        {
+            return stopwatch.Elapsed > TimeSpan.FromMilliseconds(duration - tolerance) && stopwatch.Elapsed < TimeSpan.FromMilliseconds(duration + tolerance);
         }
 
         [TestMethod]
