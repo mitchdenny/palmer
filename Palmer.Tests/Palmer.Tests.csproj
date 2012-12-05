@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Palmer\Palmer.csproj">
-      <Project>{df4dc5cc-6db6-40d3-9930-c7fe7e1eeef9}</Project>
+      <Project>{77bebc23-662d-4b5d-98ad-d5babed3c467}</Project>
       <Name>Palmer</Name>
     </ProjectReference>
   </ItemGroup>

@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF4DC5CC-6DB6-40D3-9930-C7FE7E1EEEF9}</ProjectGuid>
+    <ProjectGuid>{77BEBC23-662D-4B5D-98AD-D5BABED3C467}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Palmer</RootNamespace>
@@ -42,8 +42,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Retry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Retry.cs" />
     <Compile Include="RetryCondition.cs" />
     <Compile Include="RetryConditionHandle.cs" />
     <Compile Include="RetryContext.cs" />
