@@ -6,7 +6,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D381C1F1-3CEB-4198-BE12-6A8554E2B106}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
-		README = README
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8781EA7C-2537-40C1-93B9-D34D7718A99E}"
