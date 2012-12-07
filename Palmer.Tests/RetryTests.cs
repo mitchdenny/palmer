@@ -37,7 +37,7 @@ namespace Palmer.Tests
         [TestMethod]
         public void GivenSimpleOperationResultCanBeReturned()
         {
-            var result = Retry.On<Exception>().Indefinately().With((context) =>
+            var result = Retry.On<Exception>().Indefinitely().With((context) =>
                 {
                     return 2 + 2;
                 });
@@ -92,7 +92,7 @@ namespace Palmer.Tests
         {
             var timesToFail = 100;
 
-            Retry.On<Exception>().Indefinately().With((context) =>
+            Retry.On<Exception>().Indefinitely().With((context) =>
                 {
                     if (timesToFail == 0)
                     {
@@ -111,7 +111,7 @@ namespace Palmer.Tests
         {
             var counter = 0;
 
-            Retry.On(handle => handle.Occurences < 100).Indefinately().With(context =>
+            Retry.On(handle => handle.Occurences < 100).Indefinitely().With(context =>
                 {
                     counter++;
                 }
@@ -124,7 +124,7 @@ namespace Palmer.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void GivenCodeThatThrowsUnexpectedExceptionNoRetryExceptionIsThrown()
         {
-            Retry.On<WebException>().Indefinately().With(context =>
+            Retry.On<WebException>().Indefinitely().With(context =>
                 {
                     throw new InvalidOperationException();
                 });

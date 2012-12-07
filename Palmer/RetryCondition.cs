@@ -40,7 +40,7 @@ namespace Palmer
             return Retry;
         }
 
-        public Retry Indefinately()
+        public Retry Indefinitely()
         {
             TerminationCondition = (handle) => false;
             return Retry;
