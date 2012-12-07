@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8781EA
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer", "Palmer\Palmer.csproj", "{B3B7366F-4611-42AC-878B-3C2A8686D953}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer", "Palmer\Palmer.csproj", "{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3B7366F-4611-42AC-878B-3C2A8686D953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3B7366F-4611-42AC-878B-3C2A8686D953}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3B7366F-4611-42AC-878B-3C2A8686D953}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3B7366F-4611-42AC-878B-3C2A8686D953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

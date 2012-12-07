@@ -1,6 +1,6 @@
 Palmer
 ======
-Palmer is a .NET library that presents a fluent-API which makes it easier to write retry logic. Palmer is developed and maintained by Mitch Denny and is released under the [MIT license](LICENSE).
+Palmer is a .NET library that presents a fluent-API which makes it easier to write retry logic. Palmer is developed and maintained by Mitch Denny and is released under the [MIT license](https://raw.github.com/MitchDenny/Palmer/master/LICENSE).
 
 How do I get my hands on Palmer?
 --------------------------------

@@ -5,9 +5,9 @@
     <version>$version$</version>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>http://mitchdenny.github.com/Palmer/License</licenseUrl>
-    <projectUrl>http://mitchdenny.github.com/Palmer</projectUrl>
-    <iconUrl>https://github.com/MitchDenny/Palmer/tree/master/Palmer/Palmer.png</iconUrl>
+    <licenseUrl>http://raw.github.com/MitchDenny/Palmer/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/MitchDenny/Palmer</projectUrl>
+    <iconUrl>http://raw.github.com/MitchDenny/Palmer/master/Palmer.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>This is the initial release of the Palmer library.</releaseNotes>
