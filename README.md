@@ -53,7 +53,7 @@ Retry.On<SqlException>(handle => (handle.Context.LastException as SqlException).
 Normally you wouldn't retry forever, but the capability to retry forever is included for completeness.
 
 ```c#
-Retry.On<WebException>().Indefinately().With(context =>
+Retry.On<WebException>().Indefinitely().With(context =>
 	{
 		// Code that might throw a web exception.
 	});
