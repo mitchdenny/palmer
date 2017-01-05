@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace Palmer
 {
@@ -36,18 +34,18 @@ namespace Palmer
             return OnInternal<TException>(retry);
         }
 
-        public static RetryCondition On<TException>(Func<RetryConditionHandle, bool> predicate) where TException: Exception
+        public static RetryCondition On<TException>(Func<RetryConditionHandle, bool> predicate) where TException : Exception
         {
             var retry = new Retry();
             return OnInternal<TException>(retry, predicate);
         }
 
-        public RetryCondition AndOn<TException>() where TException: Exception
+        public RetryCondition AndOn<TException>() where TException : Exception
         {
             return OnInternal<TException>(this);
         }
 
-        public RetryCondition AndOn<TException>(Func<RetryConditionHandle, bool> predicate) where TException: Exception
+        public RetryCondition AndOn<TException>(Func<RetryConditionHandle, bool> predicate) where TException : Exception
         {
             return OnInternal<TException>(this, predicate);
         }
@@ -67,11 +65,10 @@ namespace Palmer
 
             do
             {
-                context.DidExceptionOnLastRun = false;
-
                 try
                 {
                     target(context);
+                    context.DidExceptionOnLastRun = false;
                     var anyConditionsMet = CheckAndUpdateFilterConditions(context);
 
                     if (!anyConditionsMet)
