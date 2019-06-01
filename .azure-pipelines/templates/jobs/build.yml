@@ -10,7 +10,7 @@ jobs:
       versionSpec: '10.x'
     displayName: 'Install Node.js'
   - script: |
-      npx -g git2semver@$(Git2SemverVersion) --formatter majorminorpatch-pipelines-variables-and-label
+      npx -q git2semver@$(Git2SemverVersion) --formatter majorminorpatch-pipelines-variables-and-label
     displayName: 'Generate version number'
   - script: |
       set -e
