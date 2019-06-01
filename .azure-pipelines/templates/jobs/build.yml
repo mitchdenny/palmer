@@ -14,8 +14,7 @@ jobs:
     displayName: 'Generate version number'
   - script: |
       set -e
-      dotnet build src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) 
-      dotnet test src/Palmer.sln --no-build
+      dotnet test src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) 
       dotnet pack src/Palmer.sln --no-build /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) --output $(Build.ArtifactStagingDirectory)
     displayName: Build, Test & Pack
   - upload: $(Build.ArtifactStagingDirectory)
