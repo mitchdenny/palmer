@@ -1,0 +1,12 @@
+triggers:
+  branches:
+    include:
+    - master
+
+pr:
+  branches:
+    include:
+    - master
+
+jobs:
+- template: templates/build.yml
