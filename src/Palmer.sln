@@ -1,39 +1,48 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer.Tests", "Palmer.Tests\Palmer.Tests.csproj", "{646A3705-DD15-4006-A6C4-29B03154CFEB}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer", "Palmer\Palmer.csproj", "{F3CD0473-7753-4623-9982-DD9DE8E5B70D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D381C1F1-3CEB-4198-BE12-6A8554E2B106}"
-	ProjectSection(SolutionItems) = preProject
-		LICENSE = LICENSE
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8781EA7C-2537-40C1-93B9-D34D7718A99E}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer", "Palmer\Palmer.csproj", "{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palmer.Tests", "Palmer.Tests\Palmer.Tests.csproj", "{E73B5D4E-BFF8-416B-8A0B-69609C904B01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{646A3705-DD15-4006-A6C4-29B03154CFEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4459F2B3-FBB0-4C9C-BBC1-1B1E191B4CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Debug|x64.Build.0 = Debug|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Debug|x86.Build.0 = Debug|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Release|x64.ActiveCfg = Release|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Release|x64.Build.0 = Release|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3CD0473-7753-4623-9982-DD9DE8E5B70D}.Release|x86.Build.0 = Release|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Debug|x64.Build.0 = Debug|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Debug|x86.Build.0 = Debug|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Release|x64.ActiveCfg = Release|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Release|x64.Build.0 = Release|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Release|x86.ActiveCfg = Release|Any CPU
+		{E73B5D4E-BFF8-416B-8A0B-69609C904B01}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
