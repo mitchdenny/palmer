@@ -15,17 +15,17 @@ jobs:
   - ${{ if eq(variables['System.BuildReason'], 'PullRequest')}}:
     - script: |
         set -e
-        dotnet build src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH)
-        dotnet test src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) 
-        dotnet pack src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) /p:VersionSuffix=pr.$(Build.BuildID) --output $(Build.ArtifactStagingDirectory)
+        dotnet build src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH)
+        dotnet test src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH) 
+        dotnet pack src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH) /p:VersionSuffix=pr.$(Build.BuildID) --output $(Build.ArtifactStagingDirectory)
       displayName: Build, Test & Pack
   - ${{ if ne(variables['System.BuildReason'], 'PullRequest')}}:
     - script: |
         set -e
-        dotnet build src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH)
-        dotnet test src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) 
-        dotnet pack src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) --output $(Build.ArtifactStagingDirectory)
-        dotnet pack src/Palmer.sln -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) /p:VersionSuffix=preview.$(Build.BuildID) --output $(Build.ArtifactStagingDirectory)
+        dotnet build src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH)
+        dotnet test src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH) 
+        dotnet pack src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH) --output $(Build.ArtifactStagingDirectory)
+        dotnet pack src/Palmer.sln -c Release /p:VersionPrefix=$(GIT2SEMVER_MAJORMINORPATCH) /p:VersionSuffix=preview.$(Build.BuildID) --output $(Build.ArtifactStagingDirectory)
       displayName: Build, Test & Pack
   - upload: $(Build.ArtifactStagingDirectory)
     artifact: packages
