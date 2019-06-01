@@ -1,4 +1,4 @@
-triggers:
+trigger:
   branches:
     include:
     - master
@@ -9,4 +9,4 @@ pr:
     - master
 
 jobs:
-- template: templates/build.yml
+- template: templates/jobs/build.yml
