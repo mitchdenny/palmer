@@ -10,5 +10,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mitchdenny/palmer</PackageProjectUrl>
     <ReleaseNotes>Moved to .NET Standard 2.0.</ReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 </Project>
