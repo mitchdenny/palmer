@@ -8,6 +8,11 @@ FROM mcr.microsoft.com/dotnet/core/sdk:latest
 # Install git, process tools
 RUN apt-get update && apt-get -y install git procps
 
+# Install Node.js and git2semver
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install nodejs
+RUN npm install -g git2semver
+
 # Clean up
 RUN apt-get autoremove -y \
     && apt-get clean -y \
