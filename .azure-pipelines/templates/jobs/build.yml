@@ -1,0 +1,22 @@
+jobs:
+- job: Build
+  variables:
+  - template: ../variables/globals.yml
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+  - script: |
+      npx -g git2semver@$(Git2SemverVersion) --formatter majorminorpatch-pipelines-variables-and-label
+    displayName: 'Generate version number'
+  - script: |
+      set -e
+      dotnet build -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) 
+      dotnet test --no-build
+      dotnet pack --no-build /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) --output $(Build.ArtifactStagingDirectory)
+    displayName: Build, Test & Pack
+  - upload: $(Build.ArtifactStagingDirectory)
+    artifact: packages
