@@ -1,0 +1,27 @@
+triggers:
+- master
+
+pr:
+- master
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npx -g git2semver --formatter majorminorpatch-pipelines-variables-and-label
+  displayName: 'Generate version number'
+- script: |
+    dotnet build -c Release /p:Version=
+    dotnet test --no-build
+    dotnet pack --no-build --
+  displayName: Build, Test & Pack
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: drop
+    targetPath: $(Build.SourcesDirectory)
