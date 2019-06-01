@@ -17,11 +17,12 @@ steps:
     npx -g git2semver --formatter majorminorpatch-pipelines-variables-and-label
   displayName: 'Generate version number'
 - script: |
-    dotnet build -c Release /p:Version=
+    set -e
+    dotnet build -c Release /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) 
     dotnet test --no-build
-    dotnet pack --no-build --
+    dotnet pack --no-build /p:Version=$(GIT2SEMVER_MAJORMINORPATCH) --output $(Build.ArtifactStagingDirectory)
   displayName: Build, Test & Pack
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: drop
-    targetPath: $(Build.SourcesDirectory)
+    targetPath: $(Build.ArtifactStagingDirectory)
