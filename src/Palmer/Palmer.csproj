@@ -1,5 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Mitch Denny</Authors>
+    <Description>A simple library which allows .NET developers to express retry logic using a fluent-api.</Description>
+    <Copyright>Copyright 2019</Copyright>
+    <PackageTags>.net;c#;csharp;deadlock;retry;fluent</PackageTags>
+    <RepositoryUrl>https://github.com/mitchdenny/palmer</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 </Project>
