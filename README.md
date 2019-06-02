@@ -16,9 +16,9 @@ Once you have the library installed using Palmer is simple. Just wrap a call to 
 
 ```c#
 Retry.On<WebException>().For(TimeSpan.FromSeconds(15)).With(context =>
-  {
-	// Code that might periodically fail due to connectivity issues.
-  });
+{
+// Code that might periodically fail due to connectivity issues.
+});
 ```
 
 With these few lines of code we are telling Palmer to keep retrying the code for 15 seconds, or until it succeeds. If the code still fails after 15 seconds then a RetryException is thrown which provides the developer with access to the latest exception, and all previously raised exceptions. If the code throws any other exception that exception is allowed to bubble out of Palmer.
@@ -44,9 +44,9 @@ This code shows you to example the last raised exception to determine if it was 
 
 ```c#
 Retry.On<SqlException>(handle => (handle.Context.LastException as SqlException).Number == 1205).For(5).With(context =>
-	{
-		// Code that might result in a SQL deadlock.
-	});
+{
+	// Code that might result in a SQL deadlock.
+});
 ```
 
 ###Retry Forever
@@ -54,9 +54,9 @@ Normally you wouldn't retry forever, but the capability to retry forever is incl
 
 ```c#
 Retry.On<WebException>().Indefinitely().With(context =>
-	{
-		// Code that might throw a web exception.
-	});
+{
+	// Code that might throw a web exception.
+});
 ```
 
 ###Non-Exception Failures
@@ -66,9 +66,9 @@ Some APIs don't throw exceptions. Rather than forcing you to throw an exception 
 var completedSuccessfully = false;
 
 Retry.On(handle => completedSuccessfully).For(5).With(context =>
-	{
-		completedSuccessfully = SomeApiThatReturnsTrueOrFailsAsSuccessStatus();
-	});
+{
+	completedSuccessfully = SomeApiThatReturnsTrueOrFailsAsSuccessStatus();
+});
 ```
 
 ### Multiple Exceptions
@@ -76,9 +76,9 @@ Sometimes the code that you write might throw multiple different exceptions, Pal
 
 ```c#
 Retry.On<WebException>().For(5).AndOn<SqlException>().For(5).With(context =>
-	{
-		// Code that might throw a web exception, or a sql exception.
-	});
+{
+	// Code that might throw a web exception, or a sql exception.
+});
 ```
 
 In the case above the counts for each exception are independent of each other.
@@ -87,13 +87,11 @@ In the case above the counts for each exception are independent of each other.
 Post conditions are very similar to detecting non-exception failures. Where they differ is their intended usage. The On/AndOn methods which take predicates are evaluated against every exception or on every run. The predicate specified with the Until method is only evaulated once an exception has been detected. At this point this method could be used to fail after a total number of exceptions has been reached.
 
 ```c#
-Retry
-	.On<WebException>().Until(handle => handle.Context.Exceptions.Count() > 10)
+Retry.On<WebException>().Until(handle => handle.Context.Exceptions.Count() > 10)
 	.AndOn<SqlException().Until(handle => handle.Context.Exceptions.Count() > 10)
-	.With(context =>
-	{
-		// Code that might throw a web exception.
-	});
+	.With(context => {
+	// Code that might throw a web exception.
+});
 ```
 
 Getting Help
